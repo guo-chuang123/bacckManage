@@ -6,8 +6,20 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
-    name: 'Home',
-    component: () => import('../src/views/Home.vue'),
+    name: 'Main',
+    component: () => import('../src/views/Main.vue'),
+    children: [
+      {
+        path: '/home',
+        name: 'home',
+        component:()=>import("../src/views/home/home.vue")
+      },
+      {
+        path: '/user',
+        name: 'user',
+        component:()=>import("../src/views/user/User.vue")
+      }
+    ]
   },
 ]
 const router = new VueRouter({
