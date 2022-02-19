@@ -3,12 +3,11 @@
     <el-header class="home-header">
       <CommonHeade></CommonHeade>
     </el-header>
-<el-container class="home-main">
-    <el-aside style="width: 10rem"
-      >
-      <CommonAside></CommonAside>
-    </el-aside>
-    
+    <el-container class="home-main">
+      <el-aside style="width: 10rem">
+        <CommonAside></CommonAside>
+      </el-aside>
+
       <el-main class="home-content">
         <router-view></router-view>
       </el-main>
@@ -18,12 +17,12 @@
 
 <script>
 import CommonAside from '../components/CommonAside'
-import CommonHeade from'../components/CommonHeade.vue'
+import CommonHeade from '../components/CommonHeade.vue'
 export default {
   name: 'Home',
   components: {
     CommonAside,
-    CommonHeade
+    CommonHeade,
   },
   data() {
     return {}
@@ -41,6 +40,7 @@ export default {
   }
   .home-main {
     .home-content {
+      height: 100%;
     }
   }
 }

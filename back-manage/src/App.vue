@@ -22,6 +22,8 @@ body {
   padding: 5px;
 }
 #app {
-  height: 100vh;
+  position: fixed;
+  top: 0;
+  bottom: 0;
 }
 </style>

@@ -4,7 +4,9 @@ import 'element-ui/lib/theme-chalk/index.css'
 import './assets/less/common.less'
 
 import store from './store'
-
+import router from '../router/index'
+import http from 'axios'
+import '../api/mock'
 // 按需使用element-ui
 import {
   Container,
@@ -29,12 +31,14 @@ import {
   DescriptionsItem,
   Tag,
   Table,
-  TableColumn
+  TableColumn,
+  Card
 } from 'element-ui'
 // 路由配置
-import router from '../router/index'
 
 Vue.config.productionTip = false
+Vue.prototype.$http=http
+
 
 Vue.use(Container)
 Vue.use(Main)
@@ -59,6 +63,8 @@ Vue.use(DescriptionsItem)
 Vue.use(Tag)
 Vue.use(Table)
 Vue.use(TableColumn)
+Vue.use(Card)
+
 
 new Vue({
   store,
