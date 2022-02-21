@@ -3,13 +3,23 @@
     <div class="col1">通用后台管理系统</div>
     <div class="header-row">
       <div class="col2">
-        <el-button
-          @click="handelMenu"
-          plain
-          icon="el-icon-menu"
-          size="mini"
-        ></el-button>
-        <h2>首页</h2>
+        <div class="header-btn">
+          <el-button
+            @click="handelMenu"
+            plain
+            icon="el-icon-menu"
+            size="mini"
+          ></el-button>
+        </div>
+        <!-- 面包屑导航栏 -->
+        <el-breadcrumb separator="/" class="header-bread">
+          <el-breadcrumb-item
+            v-for="item in tags"
+            :key="item.name"
+            :to="{ path: item.path }"
+            >{{ item.label }}</el-breadcrumb-item
+          >
+        </el-breadcrumb>
       </div>
       <div class="col3">
         <el-dropdown :hide-on-click="true" szie="mini">
@@ -28,6 +38,7 @@
 </template>
 
 <script>
+import { mapState, } from 'vuex'
 export default {
   name: 'CommonHeade',
   data() {
@@ -35,6 +46,12 @@ export default {
       // 头像url
       imgSrc: require('../assets/images/user.png'),
     }
+  },
+  // 获取state中的tabsList值
+  computed: {
+    ...mapState({
+      tags: (state) => state.tab.tabsList,
+    }),
   },
   methods: {
     handelMenu() {
@@ -47,6 +64,7 @@ export default {
 <style lang="less" scoped>
 .header-content {
   height: 60px;
+  width: 100%;
   display: flex;
   line-height: 60px;
   .col1 {
@@ -62,11 +80,17 @@ export default {
     display: flex;
     .col2 {
       padding-left: 10px;
-      flex: 5 0 100px;
-      h2 {
-        margin: 0 10px;
-        display: inline-block;
-        color: #fff;
+      flex: 5 100px;
+      display: flex;
+      .header-bread {
+        margin-left: 10px;
+        line-height: 60px;
+        /deep/ .el-breadcrumb__inner {
+          color: #bbb;
+        }
+        /deep/.el-breadcrumb__item:last-child .el-breadcrumb__inner {
+          color: #fff;
+        }
       }
     }
     .col3 {

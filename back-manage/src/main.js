@@ -32,13 +32,29 @@ import {
   Tag,
   Table,
   TableColumn,
-  Card
+  Card,
+  Breadcrumb,
+  BreadcrumbItem,
+  Input,
+  Dialog,
+  Form,
+  FormItem,
+  Select,
+  Switch,
+  DatePicker,
+  Option,
+  Pagination,
+  Message,
+  MessageBox,
+  Notification,
 } from 'element-ui'
 // 路由配置
 
 Vue.config.productionTip = false
-Vue.prototype.$http=http
-
+Vue.prototype.$http = http
+Vue.prototype.$confirm = MessageBox.confirm
+Vue.prototype.$notify = Notification
+Vue.prototype.$message = Message
 
 Vue.use(Container)
 Vue.use(Main)
@@ -64,7 +80,17 @@ Vue.use(Tag)
 Vue.use(Table)
 Vue.use(TableColumn)
 Vue.use(Card)
-
+Vue.use(BreadcrumbItem)
+Vue.use(Breadcrumb)
+Vue.use(Input)
+Vue.use(Dialog)
+Vue.use(Form)
+Vue.use(Select),
+  Vue.use(FormItem),
+  Vue.use(Switch),
+  Vue.use(DatePicker),
+  Vue.use(Option),
+  Vue.use(Pagination)
 
 new Vue({
   store,

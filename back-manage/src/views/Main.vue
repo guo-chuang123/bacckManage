@@ -9,6 +9,7 @@
       </el-aside>
 
       <el-main class="home-content">
+        <CommonTag></CommonTag>
         <router-view></router-view>
       </el-main>
     </el-container>
@@ -18,11 +19,13 @@
 <script>
 import CommonAside from '../components/CommonAside'
 import CommonHeade from '../components/CommonHeade.vue'
+import CommonTag from '../components/CommonTag.vue'
 export default {
   name: 'Home',
   components: {
     CommonAside,
     CommonHeade,
+    CommonTag
   },
   data() {
     return {}
@@ -39,6 +42,9 @@ export default {
     background-color: #002fa7;
   }
   .home-main {
+    /deep/.el-main {
+      padding: 10px;
+    }
     .home-content {
       height: 100%;
     }

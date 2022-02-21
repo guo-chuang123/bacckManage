@@ -2,26 +2,16 @@
   <div class="content">
     <!-- 侧边栏折叠按钮 -->
     <el-menu class="menu-btn" v-model="isCollapse">
-      <el-button
-        class="btn-open"
-        plain
-        v-if="isCollapse"
-        @click="handelMenu"
+      <el-button class="btn-open" plain v-if="isCollapse" @click="handelMenu"
         ><i class="el-icon-s-unfold"></i
       ></el-button>
-      <el-button
-        class="btn-close"
-        plain
-        v-if="!isCollapse"
-        @click="handelMenu"
+      <el-button class="btn-close" plain v-if="!isCollapse" @click="handelMenu"
         ><i class="el-icon-s-fold">折叠</i></el-button
       >
     </el-menu>
     <!-- 侧边栏 -->
     <el-menu
       class="menu-main"
-      @open="handleOpen"
-      @close="handleClose"
       :collapse="isCollapse"
     >
       <!-- 侧边栏一级按钮 -->
@@ -48,6 +38,7 @@
           <el-menu-item
             v-for="(item1, index) in item.children"
             :key="item1.path"
+            @click="clickMenu(item1)"
             :index="'insidein' + index"
           >
             <i :class="'el-icon-' + item1.icon"></i>
@@ -70,39 +61,39 @@ export default {
           name: 'home',
           label: '首页',
           icon: 's-home',
-          url: 'Home/Home',
+          url: 'home/home',
         },
         {
-          path: '/mall',
-          name: 'mall',
+          path: '/goods',
+          name: 'goods',
           label: '商品管理',
           icon: 'video-play',
-          url: 'MallManage/MallManage',
+          url: '/goods',
         },
         {
           path: '/user',
           name: 'user',
           label: '用户管理',
           icon: 'user',
-          url: 'UserManage/UserManage',
+          url: '/user',
         },
         {
           label: '其他',
           icon: 'location',
           children: [
             {
-              path: '/page1',
-              name: 'page1',
+              path: '/otherOne',
+              name: 'otherOne',
               label: '页面1',
               icon: 'setting',
-              url: 'Other/PageOne',
+              url: '/otherOne',
             },
             {
-              path: '/page2',
-              name: 'page2',
+              path: '/otherTwo',
+              name: 'otherTwo',
               label: '页面2',
               icon: 'setting',
-              url: 'Other/PageTwo',
+              url: '/otherOne',
             },
           ],
         },
@@ -125,21 +116,18 @@ export default {
   },
 
   methods: {
-    handleOpen(key, keyPath) {
-      console.log(key, keyPath)
-    },
-    handleClose(key, keyPath) {
-      console.log(key, keyPath)
-    },
+    // 点击侧边栏跳转路由
     clickMenu(item) {
-      console.log(item)
+      
+      this.$store.commit('selsectMenu', item)
       this.$router.push({
         name: item.name,
       })
     },
-    handelMenu(){
-      this.$store.commit("collapseMenu")
-    }
+    // vuex，是否折叠侧边栏
+    handelMenu() {
+      this.$store.commit('collapseMenu')
+    },
   },
 }
 </script>
