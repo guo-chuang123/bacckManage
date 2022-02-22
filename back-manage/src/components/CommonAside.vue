@@ -56,69 +56,32 @@ export default {
   data() {
     return {
       menu: [
-        {
-          path: '/',
-          name: 'home',
-          label: '首页',
-          icon: 's-home',
-          url: 'home/home',
-        },
-        {
-          path: '/goods',
-          name: 'goods',
-          label: '商品管理',
-          icon: 'video-play',
-          url: '/goods',
-        },
-        {
-          path: '/user',
-          name: 'user',
-          label: '用户管理',
-          icon: 'user',
-          url: '/user',
-        },
-        {
-          label: '其他',
-          icon: 'location',
-          children: [
-            {
-              path: '/otherOne',
-              name: 'otherOne',
-              label: '页面1',
-              icon: 'setting',
-              url: '/otherOne',
-            },
-            {
-              path: '/otherTwo',
-              name: 'otherTwo',
-              label: '页面2',
-              icon: 'setting',
-              url: '/otherOne',
-            },
-          ],
-        },
+       
       ],
     }
   },
   computed: {
     // 计算属性，过滤出当前数组无子项目的项
     noChild() {
-      return this.menu.filter((item) => !item.children)
+      return this.asyncMenu.filter((item) => !item.children)
     },
     // 计算属性，过滤出当前数组有子项目的项
     hasChild() {
-      return this.menu.filter((item) => item.children)
+      return this.asyncMenu.filter((item) => item.children)
     },
     // 使用vuex实现组件间传递isCollapse
     isCollapse() {
       return this.$store.state.tab.isCollapse
     },
+    // 获取当前的侧边栏数据
+    asyncMenu(){
+      return this.$store.state.tab.menu
+    }
   },
 
   methods: {
     // 点击侧边栏跳转路由
     clickMenu(item) {
-      
       this.$store.commit('selsectMenu', item)
       this.$router.push({
         name: item.name,

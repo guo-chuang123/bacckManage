@@ -32,7 +32,7 @@
           :inline="true"
           ref="form"
         >
-          <el-button type="primary" @click="getList(searchForm.keyword)"
+          <el-button type="primary" @click="getList(1, searchForm.keyword)"
             >搜索</el-button
           >
         </CommonForm>
@@ -43,7 +43,7 @@
         :tableData="tableData"
         :tableLabel="tableLabel"
         :config="config"
-        @changPage="getList()"
+        @changPage="getList"
         @edit="editUser"
         @del="delUser"
       ></CommonTable>
@@ -200,32 +200,45 @@ export default {
             })
             this.getList()
           }
-          this.isShow = false
         })
       } else {
-        addData(this.operateForm).then(() => {
-          this.isShow = false
-
-          this.getList()
+        addData(this.operateForm).then((res) => {
+          if (res.data.code === 20000) {
+            this.$message({
+              showClose: true,
+              message: '添加成功',
+              type: 'success',
+            })
+            this.getList()
+          }
         })
       }
+      this.isShow = false
     },
     // 获取列表数据
-    getList(name = '') {
+    getList(page, name = '') {
+      this.config.page = page
       this.config.loading = true
-      name ? (this.config.page = 1) : ''
-
+      // 若为搜索，设置页数为1，并按名字查找
       getUser({
         page: this.config.page,
         name,
       }).then(({ data: res }) => {
-        res.list.map((item) => {
-          item.sexLabel = item.sex === 0 ? '女' : '男'
-          return item
-        })
-        this.tableData = res.list
-        this.config.total = res.count
-        this.config.loading = false
+        if (res.list.length === 0) {
+          this.$message({
+            showClose: true,
+            message: '查无此人！',
+            type: 'warning',
+          })
+        } else {
+          res.list.map((item) => {
+            item.sexLabel = item.sex === 0 ? '女' : '男'
+            return item
+          })
+          this.tableData = res.list
+          this.config.total = res.count
+          this.config.loading = false
+        }
       })
     },
     // 更新用户

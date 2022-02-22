@@ -1,9 +1,11 @@
 import Mock from 'mockjs'
 export default {
   getMenu: config => {
-    console.log(config);
+    // console.log(config);
     const { username, password } = JSON.parse(config.body)
     console.log(JSON.parse(config.body))
+    console.log(username);
+    console.log(password);
     // 先判断用户是否存在
     // 判断账号和密码是否对应
     if (username === 'admin' && password === 'admin') {
@@ -16,39 +18,39 @@ export default {
               name: 'home',
               label: '首页',
               icon: 's-home',
-              url: 'Home/Home'
+              url: 'home/home'
             },
             {
-              path: '/mall',
+              path: '/goods',
               name: 'mall',
               label: '商品管理',
               icon: 'video-play',
-              url: 'Mall/Mall'
+              url: 'goods/goods'
             },
             {
               path: '/user',
               name: 'user',
               label: '用户管理',
               icon: 'user',
-              url: 'User/User'
+              url: 'user/user'
             },
             {
               label: '其他',
               icon: 'location',
               children: [
                 {
-                  path: '/page1',
-                  name: 'page1',
+                  path: '/otherOne',
+                  name: 'otherOne',
                   label: '页面1',
                   icon: 'setting',
-                  url: 'Other/PageOne'
+                  url: 'other/otherOne'
                 },
                 {
-                  path: '/page2',
-                  name: 'page2',
+                  path: '/otherTwo',
+                  name: 'otherTwo',
                   label: '页面2',
                   icon: 'setting',
-                  url: 'Other/PageTwo'
+                  url: 'other/otherTwo'
                 }
               ]
             }
@@ -64,17 +66,24 @@ export default {
           menu: [
             {
               path: '/',
+              name: 'main',
+              label: '首页',
+              icon: 's-home',
+              url: 'home/home'
+            },
+            {
+              path: '/home',
               name: 'home',
               label: '首页',
               icon: 's-home',
-              url: 'Home/Home'
+              url: 'home/home'
             },
             {
               path: '/video',
               name: 'video',
               label: '商品管理',
               icon: 'video-play',
-              url: 'VideoManage/VideoManage'
+              url: 'goods/goods'
             }
           ],
           token: Mock.Random.guid(),

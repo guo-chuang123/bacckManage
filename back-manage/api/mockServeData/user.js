@@ -2,7 +2,7 @@ import Mock from 'mockjs'
 
 // get请求从config.url获取参数，post从config.body中获取参数
 function param2Obj(url) {
-  console.log(url)
+  // console.log(url)
   const search = url.split('?')[1]
   if (!search) {
     return {}
@@ -96,7 +96,7 @@ export default {
   deleteUser: (config) => {
     // console.log(config);
     const { id } = param2Obj(config.url)
-    console.log(id);
+    // console.log(id);
     if (!id) {
       return {
         code: -999,

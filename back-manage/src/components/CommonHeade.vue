@@ -29,7 +29,7 @@
 
           <el-dropdown-menu slot="dropdown">
             <el-dropdown-item>个人中心</el-dropdown-item>
-            <el-dropdown-item>退出</el-dropdown-item>
+            <el-dropdown-item @click.native="quit">退出</el-dropdown-item>
           </el-dropdown-menu>
         </el-dropdown>
       </div>
@@ -57,6 +57,17 @@ export default {
     handelMenu() {
       this.$store.commit('collapseMenu')
     },
+    quit(){
+      this.$store.commit("clearToken")
+      this.$store.commit("clearMenu")
+      this.$router.push({name:"login"})
+      this.$message({
+              showClose: true,
+              message: '退出成功',
+              type: 'success',
+            })
+      
+    }
   },
 }
 </script>
