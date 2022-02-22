@@ -1,10 +1,18 @@
 import axios from './axios'
 // 获取侧边栏数据
-export const getMenu = (param) => {
+// export const getMenu = (param) => {
+//   return axios.request({
+//     url: '/permission/getMenu',
+//     method: 'post',
+//     data: param,
+//   })
+// }
+// 登录
+export const login = (data) => {
   return axios.request({
     url: '/permission/getMenu',
     method: 'post',
-    data: param,
+    data,
   })
 }
 // 获取首页左下角表格数据
@@ -19,7 +27,7 @@ export const editData = (formData) => {
   return axios.request({
     url: '/user/edit',
     method: 'post',
-    data:formData
+    data: formData,
   })
 }
 // 添加用户数据
@@ -27,18 +35,16 @@ export const addData = (formData) => {
   return axios.request({
     url: '/user/add',
     method: 'post',
-    data:formData
+    data: formData,
   })
 }
 
 // 获取信息列表
 export const getUser = (params) => {
-
   return axios.request({
     url: '/user/getUser',
     method: 'get',
-    params
+    params,
   })
 }
-
 
