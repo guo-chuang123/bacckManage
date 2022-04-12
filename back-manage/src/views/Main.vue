@@ -15,7 +15,7 @@
     </el-container>
   </el-container>
 </template>
-
+ 
 <script>
 import CommonAside from '../components/CommonAside'
 import CommonHeade from '../components/CommonHeade.vue'

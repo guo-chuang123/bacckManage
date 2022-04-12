@@ -280,9 +280,9 @@ export default {
         })
     },
   },
-}
+} 
 </script>
-
+ 
 <style lang="less" scoped>
 .user-main {
   flex-direction: column;
